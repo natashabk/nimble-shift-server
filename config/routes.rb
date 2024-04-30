@@ -10,5 +10,7 @@ Rails.application.routes.draw do
 
   namespace :api do
     resources :users, only: [:create]
+    get '/users', to: 'users#index'
+    resources :sites, only: [:create]
   end
 end

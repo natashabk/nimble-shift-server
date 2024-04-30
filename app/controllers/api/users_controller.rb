@@ -1,6 +1,15 @@
 class Api::UsersController < ApplicationController
     skip_before_action :verify_authenticity_token
 
+    def index
+        @users = User.all
+        if @users.any?
+          render json: @users
+        else
+          render json: { message: 'No users found' }, status: :not_found
+        end
+    end
+
     def create
       user = User.new(user_params)
       if user.save
